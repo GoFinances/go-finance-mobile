@@ -9,9 +9,6 @@ const AppRoutes: React.FC = () => (
   <App.Navigator
     screenOptions={{
       headerShown: false,
-      headerStyle: {
-        backgroundColor: "#FFF"
-      },
       cardStyle: { backgroundColor: '#5636D3' },
     }}
   >

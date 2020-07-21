@@ -17,7 +17,6 @@ const Routes: React.FC = () => {
       </View>
     )
   }
-
   return user ? <AppRoutes /> : <AuthRoutes />
 }
 
