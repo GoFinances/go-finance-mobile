@@ -17,6 +17,7 @@ import Header from "../../components/Header";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import TypeTransactionSelector from "../../components/TypeTransactionSelector";
+import Navigator from "../../components/Navigator";
 
 import {
   Container, Title
@@ -89,7 +90,7 @@ const NewTransaction: React.FC = () => {
           contentContainerStyle={{ flex: 1 }}
           keyboardShouldPersistTaps="handled"
         >
-          <Header />
+          <Header small={true} />
           <Container>
             <Title>Cadastro</Title>
             <Form ref={formRef} onSubmit={handleSubmit} style={{ width: "100%" }}>
@@ -136,7 +137,7 @@ const NewTransaction: React.FC = () => {
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
-
+      <Navigator currentPage="NewTransaction" />
     </>
   )
 }

@@ -9,7 +9,6 @@ interface IValue {
 
 export const Container = styled.View`
   background: #FFF;
-  top:200px;
   border-radius: 10px;
   height: 180px;
   width: 380px;

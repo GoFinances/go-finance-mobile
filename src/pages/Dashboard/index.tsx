@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 
 import { useAuth } from '../../hooks/auth'
 
@@ -7,6 +8,7 @@ import api from '../../services';
 import Transaction from '../../components/Transaction'
 import Navigator from '../../components/Navigator';
 import Card from '../../components/Card';
+import Header from '../../components/Header';
 
 import formatValue from '../../utils/formatValue';
 import formatDate from '../../utils/formatDate';
@@ -14,7 +16,7 @@ import formatDate from '../../utils/formatDate';
 
 import {
   Container,
-  Header,
+  DashboardBody,
   CardsView,
   TransactionList,
   Footer,
@@ -41,7 +43,9 @@ export interface Balance {
 }
 
 const Dashboard: React.FC = () => {
-  const { signOut } = useAuth()
+  const { signOut } = useAuth();
+  const isFocused = useIsFocused();
+
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   const [balance, setBalances] = useState<Balance>({} as Balance);
@@ -69,21 +73,23 @@ const Dashboard: React.FC = () => {
           signOut()
         });
     }
-    loadTransactions();
-  }, []);
+
+    if (isFocused)
+      loadTransactions();
+  }, [isFocused]);
 
   const DashBoardHeader = (
-    <>
+    <Container style={{ flex: 1 }}>
       <Header />
-      <Container style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <DashboardBody>
         <CardsView>
           <Card date="Última entrada dia 10 de julho" icon="arrow-up-circle" type="Entradas" value={balance.income} />
           <Card date="Última saída dia 7 de julho" icon="arrow-down-circle" type="Saídas" value={balance.outcome} />
           <Card date="Entre 01 a 10 de julho" icon="dollar-sign" type="Total" value={balance.total} total />
         </CardsView>
-      </Container>
-      <Title>Listagem</Title>
-    </>
+        <Title>Listagem</Title>
+      </DashboardBody>
+    </Container>
   )
 
   return (

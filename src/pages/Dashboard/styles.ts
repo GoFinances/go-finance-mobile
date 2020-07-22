@@ -5,13 +5,10 @@ import { FlatList } from "react-native";
 export const Container = styled.View.attrs({
   showsHorizontalScrollIndicator: false
 })`
-  background: #5636D3;
 `;
 
-export const Header = styled.View.attrs({
-  showsHorizontalScrollIndicator: false
-})`
-  background: #5636D3;
+export const DashboardBody = styled.View`
+  margin-top: -120px;
 `;
 
 export const CardsView = styled.ScrollView.attrs({
@@ -22,27 +19,25 @@ export const CardsView = styled.ScrollView.attrs({
   },
   showsHorizontalScrollIndicator: false,
 })`
-  top:100px;
 `;
 
 export const Title = styled.Text`
-  margin: 0px 20px;
-  top: 150px;
+  margin: 15px 20px;
   color: #000;
   font-size: 25px;
+  justify-content: flex-start;
 `;
 
 
 export const TransactionList = styled(FlatList).attrs({
   showsVerticalScrollIndicator: false,
 })`
-  background:#E5E5E5;
   width: 100%;
   margin: 0 auto;
 `;
 
 
 export const Footer = styled.View`
-  margin-bottom: 300px;
+  margin-bottom: 80px;
   width: 100%;
 `;
