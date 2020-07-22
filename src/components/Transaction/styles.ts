@@ -53,5 +53,6 @@ export const CategoryText = styled.Text`
 
 export const DateTransaction = styled.Text`
   font-size: 20px;
-  color: #969CB2;
+  color: #FF872C;
+  font-weight: 600;
 `;
