@@ -56,7 +56,7 @@ const Dashboard: React.FC = () => {
           var { transactions, balance } = response.data;
 
           transactions.forEach((t: Transaction) => {
-            t.formattedValue = formatValue(t.type === "income" ? (-1 * t.value) : t.value);
+            t.formattedValue = formatValue(t.type === "outcome" ? (-1 * t.value) : t.value);
             t.formattedDate = formatDate(t.created_at);
           });
 

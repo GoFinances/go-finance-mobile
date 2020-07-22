@@ -37,28 +37,14 @@ const Navigator: React.FC<NavigatorProps> = ({
     navigator.navigate(page);
   }
 
-  // const ListIcon =
-  //   currentPage === 'Dashboard' ? <ActiveListSVG /> : <ListSVG />;
-
-  // const DollarIcon =
-  //   currentPage === 'NewTransaction' ? <ActiveDollartSVG /> : <DollarSVG />;
-
   return (
     <Container style={additionalStyle}>
-      <LinkContainer
-        active={currentActivateLink === 'Dashboard'}
-        onPress={() => handleNavigation('Dashboard')}
-      >
-        {/* <Icon name="list" /> */}
-        <LinkText>Listagem</LinkText>
+      <LinkContainer onPress={() => handleNavigation('Dashboard')}>
+        <LinkText active={currentActivateLink === 'Dashboard'}>Listagem</LinkText>
       </LinkContainer>
 
-      <LinkContainer
-        active={currentActivateLink === 'NewTransaction'}
-        onPress={() => handleNavigation('NewTransaction')}
-      >
-        {/* <Icon name="list" /> */}
-        <LinkText>Cadastrar</LinkText>
+      <LinkContainer onPress={() => handleNavigation('NewTransaction')}>
+        <LinkText active={currentActivateLink === 'NewTransaction'}>Cadastrar</LinkText>
       </LinkContainer>
     </Container>
   );

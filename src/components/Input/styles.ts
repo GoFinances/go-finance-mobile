@@ -20,7 +20,7 @@ export const Container = styled.View<IContainerProps>`
   padding: 0 16px;
   background: ${p => p.themeInput && p.themeInput === 'light' ? '#FFF' : darken(0.1, '#5636D3')};
   border-radius: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   border-width: 2px;
   border-color: ${p => p.themeInput && p.themeInput === 'light' ? '#FFF' : darken(0.1, '#5636D3')};
   flex-direction: row;

@@ -23,7 +23,7 @@ export const Title = styled.Text`
 `;
 
 export const Value = styled.Text<IValue>`
-  color: ${p => p.type == 'income' ? "red" : "green"};
+  color: ${p => p.type == 'outcome' ? "red" : "green"};
   margin-top: 15px;
   font-size: 25px;
 `;

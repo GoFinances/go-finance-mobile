@@ -9,7 +9,7 @@ export const Container = styled.View`
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-  height: 56px;
+  height: 76px;
   position: absolute;
   bottom: 0;
   background-color: #fff;
@@ -21,17 +21,12 @@ export const LinkContainer = styled.TouchableOpacity<NavigatorProps>`
   justify-content: space-around;
   width: 100px;
   height: 100%;
-  ${props =>
-    props.active
-      ? css`
-          border-bottom-width: 3px;
-          border-bottom-color: #ff872c;
-        `
-      : ''}
 `;
 
-export const LinkText = styled.Text`
+export const LinkText = styled.Text<NavigatorProps>`
   font-size: 14px;
   line-height: 21px;
-  color: #363f5f;
+  color: ${props => props.active ? "#ff872c" : "#363f5f"};
+
+
 `;
