@@ -7,33 +7,37 @@ FeatherIcon.loadFont();
 interface IContainerProps {
   isFocused: boolean;
   isErrored: boolean;
+  themeInput?: "light" | "dark" | undefined;
+}
+
+interface ITextInputProps {
+  themeInput?: "light" | "dark" | undefined;
 }
 
 export const Container = styled.View<IContainerProps>`
   width: 100%;
   height: 60px;
   padding: 0 16px;
-  background: ${darken(0.1, '#5636D3')};
+  background: ${p => p.themeInput && p.themeInput === 'light' ? '#FFF' : darken(0.1, '#5636D3')};
   border-radius: 10px;
   margin-bottom: 8px;
   border-width: 2px;
-  border-color: ${darken(0.1, '#5636D3')} ;
-
+  border-color: ${p => p.themeInput && p.themeInput === 'light' ? '#FFF' : darken(0.1, '#5636D3')};
   flex-direction: row;
   align-items: center;
 
   ${props => props.isErrored && css`
-    border-color: #ff0000
+    border-color: #ff0000;
   `}
 
   ${props => props.isFocused && css`
-    border-color: #FF872C
+    border-color: #FF872C;
   `}
 `;
 
-export const TextInput = styled.TextInput`
+export const TextInput = styled.TextInput<ITextInputProps>`
   flex: 1;
-  color: #FFF;
+  color: ${p => p.themeInput && p.themeInput === 'light' ? '#969CB2' : '#FFF'};
   font-size: 16px;
 `;
 

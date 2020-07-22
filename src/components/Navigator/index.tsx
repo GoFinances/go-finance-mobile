@@ -17,14 +17,14 @@ const additionalStyle = {
 };
 
 interface NavigatorProps {
-  currentPage: 'Dashboard' | 'FormPage';
+  currentPage: 'Dashboard' | 'NewTransaction';
 }
 
 const Navigator: React.FC<NavigatorProps> = ({
   currentPage,
 }: NavigatorProps) => {
   const [currentActivateLink, setCurrentActivateLink] = useState<
-    'Dashboard' | 'FormPage'
+    'Dashboard' | 'NewTransaction'
     >();
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Navigator: React.FC<NavigatorProps> = ({
 
   const navigator = useNavigation();
 
-  function handleNavigation(page: 'Dashboard' | 'FormPage') {
+  function handleNavigation(page: 'Dashboard' | 'NewTransaction') {
     navigator.navigate(page);
   }
 
@@ -41,7 +41,7 @@ const Navigator: React.FC<NavigatorProps> = ({
   //   currentPage === 'Dashboard' ? <ActiveListSVG /> : <ListSVG />;
 
   // const DollarIcon =
-  //   currentPage === 'FormPage' ? <ActiveDollartSVG /> : <DollarSVG />;
+  //   currentPage === 'NewTransaction' ? <ActiveDollartSVG /> : <DollarSVG />;
 
   return (
     <Container style={additionalStyle}>
@@ -54,8 +54,8 @@ const Navigator: React.FC<NavigatorProps> = ({
       </LinkContainer>
 
       <LinkContainer
-        active={currentActivateLink === 'FormPage'}
-        onPress={() => handleNavigation('FormPage')}
+        active={currentActivateLink === 'NewTransaction'}
+        onPress={() => handleNavigation('NewTransaction')}
       >
         {/* <Icon name="list" /> */}
         <LinkText>Cadastrar</LinkText>

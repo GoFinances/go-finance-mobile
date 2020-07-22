@@ -2,11 +2,15 @@ import styled from "styled-components/native";
 import { FlatList } from "react-native";
 
 
-export const Container = styled.View`
+export const Container = styled.View.attrs({
+  showsHorizontalScrollIndicator: false
+})`
   background: #5636D3;
 `;
 
-export const Header = styled.View`
+export const Header = styled.View.attrs({
+  showsHorizontalScrollIndicator: false
+})`
   background: #5636D3;
 `;
 
@@ -39,5 +43,6 @@ export const TransactionList = styled(FlatList).attrs({
 
 
 export const Footer = styled.View`
+  margin-bottom: 300px;
   width: 100%;
 `;

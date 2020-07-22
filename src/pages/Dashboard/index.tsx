@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Button, View, KeyboardAvoidingView } from 'react-native';
 
 import { useAuth } from '../../hooks/auth'
 
 import api from '../../services';
 
-import Card from './Card';
-import Transaction from './Transaction';
+import Transaction from '../../components/Transaction'
+import Navigator from '../../components/Navigator';
+import Card from '../../components/Card';
 
 import formatValue from '../../utils/formatValue';
 import formatDate from '../../utils/formatDate';
 
-import Navigator from '../../components/Navigator';
 
 import {
   Container,

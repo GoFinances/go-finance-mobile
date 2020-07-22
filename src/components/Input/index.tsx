@@ -8,6 +8,7 @@ import { Container, TextInput, Icon } from './styles';
 interface InputProps extends TextInputProps {
   name: string;
   icon: string;
+  themeInput?: "light" | "dark" | undefined;
 }
 
 interface IInputValueRef {
@@ -18,7 +19,7 @@ interface IInputRef {
   focus(): void;
 }
 
-const Input: React.RefForwardingComponent<IInputRef, InputProps> = ({ name, icon, ...rest }, ref) => {
+const Input: React.RefForwardingComponent<IInputRef, InputProps> = ({ name, icon, themeInput, ...rest }, ref) => {
   const inputElementRef = useRef<any>(null);
 
   const { registerField, defaultValue = "", fieldName, error } = useField(name);
@@ -59,14 +60,14 @@ const Input: React.RefForwardingComponent<IInputRef, InputProps> = ({ name, icon
     })
   }, [fieldName, inputValueRef])
 
-
   return (
-    <Container isFocused={isFocused} isErrored={!!error}>
-      <Icon name={icon} size={20} color={isFocused || isFilled ? "#FF872C" : "#FFF"} />
+    <Container isFocused={isFocused} isErrored={!!error} themeInput={themeInput}>
+      <Icon name={icon} size={20} color={(isFocused || isFilled) ? "#FF872C" : (themeInput === 'light' ? "#969CB2" : "#FFF")} />
       <TextInput
+        themeInput={themeInput}
         ref={inputElementRef}
         keyboardAppearance="dark"
-        placeholderTextColor="#FFF"
+        placeholderTextColor={themeInput == "light" ? "#969CB2" : "#FFF"}
         defaultValue={defaultValue}
         onChangeText={value => {
           inputValueRef.current.value = value
