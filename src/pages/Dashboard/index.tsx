@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useIsFocused } from '@react-navigation/native';
+import React, { useState, useEffect, useRef } from 'react';
+import { useIsFocused, useScrollToTop } from '@react-navigation/native';
 
 import { useAuth } from '../../hooks/auth'
 
@@ -45,9 +45,9 @@ export interface Balance {
 const Dashboard: React.FC = () => {
   const { signOut } = useAuth();
   const isFocused = useIsFocused();
+  const transactionListRef = useRef(null);
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-
   const [balance, setBalances] = useState<Balance>({} as Balance);
   useEffect(() => {
     async function loadTransactions(): Promise<void> {
@@ -74,8 +74,10 @@ const Dashboard: React.FC = () => {
         });
     }
 
-    if (isFocused)
+    if (isFocused) {
+      transactionListRef.current.scrollToOffset({ animated: true, offset: 0 });
       loadTransactions();
+    }
   }, [isFocused]);
 
   const DashBoardHeader = (
@@ -95,6 +97,7 @@ const Dashboard: React.FC = () => {
   return (
     <>
       <TransactionList
+        ref={transactionListRef}
         ListHeaderComponent={DashBoardHeader}
         ListFooterComponent={Footer}
         data={transactions}

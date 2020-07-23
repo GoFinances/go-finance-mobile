@@ -59,7 +59,6 @@ const NewTransaction: React.FC = () => {
           .then(response => {
             Alert.alert("Parabéns", " Sua transação foi cadastrada com sucesso.");
             navigator.navigate('Dashboard');
-
           })
 
       } catch (err) {
