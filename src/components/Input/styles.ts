@@ -18,11 +18,11 @@ export const Container = styled.View<IContainerProps>`
   width: 100%;
   height: 60px;
   padding: 0 16px;
-  background: ${p => p.themeInput && p.themeInput === 'light' ? '#FFF' : darken(0.1, '#5636D3')};
+  background: ${p => p.themeInput && p.themeInput === 'light' ? p.theme.colors.input_bg : darken(0.1, '#5636D3')};
   border-radius: 10px;
   margin-bottom: 10px;
   border-width: 2px;
-  border-color: ${p => p.themeInput && p.themeInput === 'light' ? '#FFF' : darken(0.1, '#5636D3')};
+  border-color: 0px;
   flex-direction: row;
   align-items: center;
 
@@ -37,7 +37,7 @@ export const Container = styled.View<IContainerProps>`
 
 export const TextInput = styled.TextInput<ITextInputProps>`
   flex: 1;
-  color: ${p => p.themeInput && p.themeInput === 'light' ? '#969CB2' : '#FFF'};
+  color: ${p => p.themeInput && p.themeInput === 'light' ? p.theme.colors.text : '#FFF'};
   font-size: 16px;
 `;
 

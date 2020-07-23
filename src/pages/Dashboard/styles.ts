@@ -5,6 +5,7 @@ import { FlatList } from "react-native";
 export const Container = styled.View.attrs({
   showsHorizontalScrollIndicator: false
 })`
+  
 `;
 
 export const DashboardBody = styled.View`
@@ -23,7 +24,7 @@ export const CardsView = styled.ScrollView.attrs({
 
 export const Title = styled.Text`
   margin: 15px 20px;
-  color: #000;
+  color: ${p => p.theme.colors.secundary};
   font-size: 25px;
   justify-content: flex-start;
 `;
@@ -34,6 +35,7 @@ export const TransactionList = styled(FlatList).attrs({
 })`
   width: 100%;
   margin: 0 auto;
+  background: ${p => p.theme.colors.background};
 `;
 
 

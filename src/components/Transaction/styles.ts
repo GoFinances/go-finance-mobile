@@ -8,7 +8,7 @@ interface IValue {
 }
 
 export const Container = styled.View`
-  background: #FFF;
+  background: ${p => p.theme.colors.transactions_bg};
   border-radius: 10px;
   height: 180px;
   width: 380px;
@@ -19,11 +19,12 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
+  color: ${p => p.theme.colors.transactions_title};
   font-size: 25px;
 `;
 
 export const Value = styled.Text<IValue>`
-  color: ${p => p.type == 'outcome' ? "red" : "green"};
+  color: ${p => p.type == 'outcome' ? p.theme.colors.transactions_outcome : p.theme.colors.transactions_income};
   margin-top: 15px;
   font-size: 25px;
 `;
@@ -42,17 +43,17 @@ export const CategoryContainer = styled.View`
 
 export const Icon = styled(FeatherIcon)`
   font-size: 20px;
-  color: #969CB2;
+  color: ${p => p.theme.colors.transactions_title};
   margin-right: 5px;
 `;
 
 export const CategoryText = styled.Text`
   font-size: 20px;
-  color: #969CB2;
+  color: ${p => p.theme.colors.transactions_title};
 `;
 
 export const DateTransaction = styled.Text`
   font-size: 20px;
-  color: #FF872C;
+  color: ${p => p.theme.colors.transactions_title};
   font-weight: 600;
 `;

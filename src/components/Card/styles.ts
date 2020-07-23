@@ -9,7 +9,8 @@ interface ITotalProps {
 
 
 export const Container = styled.View<ITotalProps>`
-  background: ${p => p.total ? "#FF872C" : "#FFF"} ;
+  background: ${p => p.total ? p.theme.colors.card_bg_secondary : p.theme.colors.card_bg_primary} ;
+  border: 1px solid ${p => p.theme.colors.card_border_primary};
   border-radius: 10px;
   height: 200px;
   width: 380px;
@@ -29,10 +30,10 @@ export const ContainerIcon = styled.View`
 export const Icon = styled(FeatherIcon) <ITotalProps>`
   font-size: 50px;
   margin: 15px 40px;
-  color: #FF872C;
+  color: ${p => p.theme.colors.secundary};
 
   ${p => p.total && css`
-    color: #FFF;
+    color: ${p => p.theme.colors.textSecundary};
   `}
 `;
 
@@ -40,33 +41,33 @@ export const Icon = styled(FeatherIcon) <ITotalProps>`
 export const TypeText = styled.Text<ITotalProps>`
   font-size: 20px;
   line-height: 30px;
-  color: #969CB2;
+  color: ${p => p.theme.colors.text};
   margin-top: 40px;
   margin-left: 24px;
   text-transform: uppercase;
 
     ${p => p.total && css`
-      color: #FFF;
+      color: ${p => p.theme.colors.textSecundary};
     `}
 `;
 
 export const ValueText = styled.Text<ITotalProps>`
   font-size: 40px;
   line-height: 50px;
-  color: #000;
+  color: ${p => p.theme.colors.text};
   margin-top: 40px;
   margin-left: 24px;
   ${p => p.total && css`
-      color: #FFF;
+    color: ${p => p.theme.colors.textSecundary};
   `}
 `;
 
 export const DateText = styled.Text<ITotalProps>`
-  color: #969CB2;
+  color: ${p => p.theme.colors.text};
   line-height: 30px;
   margin-left: 35px;
 
     ${p => p.total && css`
-      color: #FFF;
+      color: ${p => p.theme.colors.textSecundary};
     `}
 `;
