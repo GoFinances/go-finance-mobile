@@ -61,12 +61,17 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post<AuthState>('/sessions', {
+    const { data: { success, message, result } } = await api.post('/sessions', {
       email,
       password,
     });
 
-    const { token, user } = response.data;
+    if (!success)
+      throw new Error(message);
+
+
+    const { token, user } = result;
+
     await AsyncStorage.multiSet([
       ['@GoFinance:token', token],
       ['@GoFinance:user', JSON.stringify(user)],

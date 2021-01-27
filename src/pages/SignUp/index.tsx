@@ -58,7 +58,9 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post('/users', data);
+        const { data: { success, message } } = await api.post(`/users`);
+        if (!success)
+          throw new Error(message);
 
         Alert.alert(
           'Cadastro realizado com sucesso',
@@ -69,17 +71,13 @@ const SignIn: React.FC = () => {
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
-          console.log("errors", errors)
-
           formRef.current.setErrors(errors);
 
           return;
         }
 
-        Alert.alert(
-          'Erro no cadastro',
-          'Ocorreu um erro ao fazer cadastro, tente novamente',
-        );
+        if (err instanceof Error)
+          Alert.alert('Erro na autenticação', err.message);
       }
     },
     [navigation],

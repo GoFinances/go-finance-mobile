@@ -55,11 +55,12 @@ const NewTransaction: React.FC = () => {
           abortEarly: false,
         });
 
-        api.post("/transactions", data)
-          .then(response => {
-            Alert.alert("Parabéns", " Sua transação foi cadastrada com sucesso.");
-            navigator.navigate('Dashboard');
-          })
+        const { data: { success, message } } = await api.post(`/transactions`, data);
+        if (!success)
+          throw new Error(message);
+
+        Alert.alert("Parabéns", " Sua transação foi cadastrada com sucesso.");
+        navigator.navigate('Dashboard');
 
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -67,11 +68,8 @@ const NewTransaction: React.FC = () => {
           formRef.current.setErrors(errors);
           return;
         }
-
-        Alert.alert(
-          'Erro no da Transação',
-          'Ocorreu um erro ao salvar a transação',
-        );
+        if (err instanceof Error)
+          Alert.alert('Erro no da Transação', err.message);
       }
     },
     [],

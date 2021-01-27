@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Alert } from 'react-native';
 import { useIsFocused, useScrollToTop } from '@react-navigation/native';
 
 import { useAuth } from '../../hooks/auth'
@@ -49,36 +50,44 @@ const Dashboard: React.FC = () => {
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [balance, setBalances] = useState<Balance>({} as Balance);
-  useEffect(() => {
-    async function loadTransactions(): Promise<void> {
-      api.get("/transactions")
-        .then(response => {
-          var { transactions, balance } = response.data;
 
-          transactions.forEach((t: Transaction) => {
-            t.formattedValue = formatValue(t.type === "outcome" ? (-1 * t.value) : t.value);
-            t.formattedDate = formatDate(t.created_at);
-          });
+  const loadTransactions = useCallback(async () => {
+    try {
+      const { data: { success, message, result } } = await api.get(`/transactions`);
+      if (!success)
+        throw new Error(message);
 
-          balance = {
-            income: formatValue(balance.income),
-            outcome: formatValue(balance.outcome),
-            total: formatValue(balance.total),
-          }
+      var { transactions, balance } = result;
 
-          setBalances(balance);
-          setTransactions(transactions);
-        })
-        .catch(error => {
-          signOut()
-        });
+      transactions.forEach((t: Transaction) => {
+        t.formattedValue = formatValue(t.type === "outcome" ? (-1 * t.value) : t.value);
+        t.formattedDate = formatDate(t.created_at);
+      });
+
+      balance = {
+        income: formatValue(balance.income),
+        outcome: formatValue(balance.outcome),
+        total: formatValue(balance.total),
+      }
+
+      setBalances(balance);
+      setTransactions(transactions);
+
+    } catch (err) {
+      if (err instanceof Error)
+        Alert.alert('Erro na autenticação', err.message);
+
+      signOut()
     }
+  }, [signOut])
 
+
+  useEffect(() => {
     if (isFocused) {
       transactionListRef.current.scrollToOffset({ animated: true, offset: 0 });
       loadTransactions();
     }
-  }, [isFocused]);
+  }, [isFocused, loadTransactions]);
 
   const DashBoardHeader = (
     <Container style={{ flex: 1 }}>
